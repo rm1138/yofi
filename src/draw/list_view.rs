@@ -70,6 +70,7 @@ where
         let top_offset = point.y + margin.top;
         let font_size = f32::from(self.params.font_size * scale);
         let icon_size_f32 = f32::from(icon_size);
+        let icon_y_offset = (icon_size_f32 - font_size) / 2f32 + 3f32;
         let entry_height = font_size.max(icon_size_f32);
 
         let displayed_items = ((space.height - margin.top - margin.bottom + item_spacing)
@@ -104,7 +105,7 @@ where
                 if icon.width == icon.height && icon.height == i32::from(icon_size) {
                     dt.draw_image_at(
                         x_offset,
-                        y_offset - icon_size_f32,
+                        y_offset - icon_size_f32 + icon_y_offset,
                         &icon,
                         &DrawOptions::default(),
                     );
@@ -113,7 +114,7 @@ where
                         icon_size_f32,
                         icon_size_f32,
                         x_offset,
-                        y_offset - icon_size_f32,
+                        y_offset - icon_size_f32 + icon_y_offset,
                         &icon,
                         &DrawOptions::default(),
                     );
